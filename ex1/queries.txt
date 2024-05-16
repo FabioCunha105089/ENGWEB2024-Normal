@@ -1,0 +1,19 @@
+fabio@fabio105089:~/testeengweb$ mongoimport -d contratos -c contratos contratos2024.json --jsonArray
+2024-05-16T14:40:25.837+0100	connected to: mongodb://localhost/
+2024-05-16T14:40:27.364+0100	36377 document(s) imported successfully. 0 document(s) failed to import.
+
+questao 1
+contratos> db.contratos.countDocuments()
+
+questao 2
+contratos> db.contratos.countDocuments({"tipoprocedimento" : "Ajuste Direto Regime Geral"})
+
+questao 3
+contratos> db.contratos.distinct("entidade_comunicante").sort()
+
+questao 4
+contratos> db.contratos.aggregate([{$group: {_id:"$tipoprocedimento", count: {$sum: 1}}}])
+
+questao 5
+contratos> db.contratos.aggregate([{$group: {_id:"$entidade_comunicante", montanteTotal: {$sum: "$precoContratual"}}}])
+
